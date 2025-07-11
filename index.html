@@ -1,20 +1,1029 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Simple Login Page</title>
-  <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-  <div class="login-container">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <p id="message"></p>
-  </div>
 
-  <script src="./script.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JD Cosmopolitan - Global Logistics Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <style>
+        :root {
+            --dark-gray: #2a2a2a;
+            --medium-gray: #3a3a3a;
+            --light-gray: #4a4a4a;
+            --gold: #d4af37;
+            --light-gold: #e8d28f;
+            --dark-gold: #b38b2d;
+            --light: #f8f9fa;
+            --accent: #d4af37;
+            --section-bg: #202020;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-gray);
+            overflow-x: hidden;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.5s ease;
+            background-color: rgba(42, 42, 42, 0.95);
+            border-bottom: 1px solid var(--gold);
+        }
+
+        header.scrolled {
+            padding: 15px 100px;
+            background-color: rgba(42, 42, 42, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            color: var(--gold);
+            font-size: 28px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: white;
+            font-weight: 600;
+        }
+
+        .navigation {
+            display: flex;
+        }
+
+        .navigation li {
+            list-style: none;
+            margin: 0 10px;
+        }
+
+        .navigation li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .navigation li a:hover {
+            color: var(--gold);
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Hero Section with Realistic 3D Container */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 100px;
+            background: linear-gradient(rgba(42, 42, 42, 0.9), rgba(42, 42, 42, 0.9)),
+                url('https://images.unsplash.com/photo-1483721310020-03333e577078?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1228&q=80');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, var(--section-bg), transparent);
+            z-index: 10;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            text-align: left;
+            color: white;
+            padding-right: 50px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 span {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            color: #e0e0e0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--gold);
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            background-color: var(--light-gold);
+            color: var(--dark-gray);
+        }
+
+        /* Realistic 3D Shipping Container */
+        .container-wrapper {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            perspective: 1000px;
+            z-index: 1;
+        }
+
+        .container-3d {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+            transform: rotateX(-10deg) rotateY(20deg) scale(1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .container-3d.zoomed {
+            transform: rotateX(-10deg) rotateY(20deg) scale(1.2);
+        }
+
+        .container-3d .side {
+            position: absolute;
+            border: 2px solid var(--gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--gold);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            background-color: #3b3939;
+            overflow: hidden;
+        }
+
+        /* Realistic container proportions (8ft x 8.5ft x 40ft) */
+        .container-3d .front,
+        .container-3d .back {
+            width: 400px;
+            /* Length */
+            height: 300px;
+            /* Height */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container-3d .front {
+            transform: translateZ(85px);
+            background-image: url('./JD_logo.png');
+        }
+
+        .container-3d .back {
+            transform: rotateY(180deg) translateZ(85px);
+            background-color: #2a2a2a;
+        }
+
+        .container-3d .right {
+            width: 170px;
+            /* Width */
+            height: 300px;
+            /* Height */
+            transform: rotateY(90deg) translateZ(200px);
+            background-color: #333;
+        }
+
+        .container-3d .left {
+            width: 170px;
+            /* Width */
+            height: 300px;
+            /* Height */
+            transform: rotateY(-90deg) translateZ(200px);
+            background-color: #333;
+        }
+
+        .container-3d .top {
+            width: 400px;
+            /* Length */
+            height: 170px;
+            /* Width */
+            transform: rotateX(90deg) translateZ(150px);
+            background-color: #2a2a2a;
+        }
+
+        .container-3d .bottom {
+            width: 400px;
+            /* Length */
+            height: 170px;
+            /* Width */
+            transform: rotateX(-90deg) translateZ(150px);
+            background-color: #2a2a2a;
+        }
+
+        /* Container details */
+        .container-logo {
+            position: absolute;
+            width: 80%;
+            height: 60px;
+            background-color: rgba(212, 175, 55, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--dark-gray);
+            bottom: 20px;
+            left: 10%;
+        }
+
+        .container-corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--gold);
+        }
+
+        /* Corner positions */
+        .corner-1 {
+            top: 10px;
+            left: 10px;
+        }
+
+        .corner-2 {
+            top: 10px;
+            right: 10px;
+        }
+
+        .corner-3 {
+            bottom: 10px;
+            left: 10px;
+        }
+
+        .corner-4 {
+            bottom: 10px;
+            right: 10px;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: rotateX(-10deg) rotateY(20deg) translateY(0);
+            }
+
+            50% {
+                transform: rotateX(-10deg) rotateY(20deg) translateY(-20px);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px;
+            background-color: var(--section-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            color: white;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title span {
+            color: var(--gold);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+
+        .about-text p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #d4d4d4;
+        }
+
+        .about-carousel {
+            flex: 1;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--gold);
+        }
+
+        .about-carousel .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px;
+            background-color: var(--section-bg);
+        }
+
+        .products-carousel {
+            margin-top: 50px;
+        }
+
+        .product-slide {
+            padding: 20px;
+            text-align: center;
+            transition: all 0.5s ease;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .product-slide img {
+            width: 80%;
+            height: 200px;
+            object-fit: contain;
+            margin: 0 auto;
+            transition: all 0.5s ease;
+            filter: grayscale(20%);
+        }
+
+        .product-slide h3 {
+            margin-top: 20px;
+            font-size: 1.3em;
+            color: var(--dark-gray);
+        }
+
+        .swiper-slide:not(.swiper-slide-active) {
+            opacity: 0.7;
+            transform: scale(0.9);
+        }
+
+        .swiper-slide-active {
+            border: 1px solid var(--gold);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px;
+            background-color: var(--section-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--dark-gray), var(--medium-gray));
+            z-index: -1;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--gold);
+        }
+
+        .service-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .service-card:hover .service-icon,
+        .service-card:hover h3,
+        .service-card:hover p {
+            color: white;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-icon {
+            font-size: 3em;
+            color: var(--gold);
+            margin: 10px 0 20px;
+            transition: all 0.5s ease;
+        }
+
+        .service-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+            transition: all 0.5s ease;
+        }
+
+        .service-card p {
+            padding: 0 20px;
+            color: #555;
+            transition: all 0.5s ease;
+            font-size: 0.95em;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 50px 100px 20px;
+            border-top: 2px solid var(--gold);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: var(--gold);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+
+        .footer-column p,
+        .footer-column a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .footer-column i {
+            margin-right: 10px;
+            color: var(--gold);
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--gold);
+            transform: translateY(-5px);
+            color: var(--dark-gray);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+
+            header,
+            header.scrolled {
+                padding: 20px 50px;
+            }
+
+            .hero {
+                padding: 0 50px;
+            }
+
+            .about,
+            .products,
+            .services {
+                padding: 80px 50px;
+            }
+
+            .container-wrapper {
+                width: 400px;
+                height: 240px;
+            }
+
+            .hero-content h1 {
+                font-size: 3em;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding-top: 100px;
+                padding-bottom: 100px;
+            }
+
+            .hero-content {
+                text-align: center;
+                padding-right: 0;
+                margin-bottom: 50px;
+                max-width: 100%;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-carousel {
+                max-width: 100%;
+                margin-top: 30px;
+                height: 400px;
+            }
+
+            .about-text {
+                min-height: auto;
+            }
+
+            .container-wrapper {
+                width: 350px;
+                height: 210px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            header,
+            header.scrolled {
+                padding: 15px 20px;
+            }
+
+            .navigation {
+                display: none;
+            }
+
+            .hero,
+            .about,
+            .products,
+            .services {
+                padding: 60px 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+
+            footer {
+                padding: 40px 20px 20px;
+            }
+
+            .container-wrapper {
+                width: 280px;
+                height: 168px;
+            }
+        }
+    </style>
+</head>
+
+<body id="home_id">
+    <!-- Header -->
+    <header id="header">
+        <a href="#" class="logo">JD <span>Cosmopolitan</span></a>
+        <ul class="navigation">
+            <li><a href="#home_id">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section with Realistic 3D Container -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Global Logistics <span>Solutions</span></h1>
+            <p>Connecting markets across continents with reliable, efficient, and innovative logistics services tailored
+                to your business needs.</p>
+            <a href="#contact" class="btn">Get a Quote</a>
+        </div>
+
+        <div class="container-wrapper">
+            <div class="container-3d" id="container3d">
+                <div class="side front">
+                    <div class="container-logo">JD COSMOPOLITAN</div>
+                    <div class="container-corner corner-1"></div>
+                    <div class="container-corner corner-2"></div>
+                    <div class="container-corner corner-3"></div>
+                    <div class="container-corner corner-4"></div>
+                </div>
+                <div class="side back">
+                    <div class="container-corner corner-1"></div>
+                    <div class="container-corner corner-2"></div>
+                    <div class="container-corner corner-3"></div>
+                    <div class="container-corner corner-4"></div>
+                </div>
+                <div class="side right">
+                    <div class="container-corner corner-1"></div>
+                    <div class="container-corner corner-2"></div>
+                    <div class="container-corner corner-3"></div>
+                    <div class="container-corner corner-4"></div>
+                </div>
+                <div class="side left">
+                    <div class="container-corner corner-1"></div>
+                    <div class="container-corner corner-2"></div>
+                    <div class="container-corner corner-3"></div>
+                    <div class="container-corner corner-4"></div>
+                </div>
+                <div class="side top">
+                    <div class="container-corner corner-1"></div>
+                    <div class="container-corner corner-2"></div>
+                    <div class="container-corner corner-3"></div>
+                    <div class="container-corner corner-4"></div>
+                </div>
+                <div class="side bottom">
+                    <div class="container-corner corner-1"></div>
+                    <div class="container-corner corner-2"></div>
+                    <div class="container-corner corner-3"></div>
+                    <div class="container-corner corner-4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title"> <span>About Us</span></h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Your Trusted Global Logistics Partner</h3>
+                <p>JD Cosmopolitan is a leading logistics provider specializing in international freight forwarding,
+                    warehousing, and supply chain solutions. With over 15 years of experience, we've built a reputation
+                    for reliability and innovation in global trade.</p>
+                <p>Our network spans across 60+ countries, offering seamless transportation by air, sea, and land. We
+                    combine cutting-edge technology with personalized service to ensure your cargo reaches its
+                    destination safely and on time.</p>
+                <p>At JD Cosmopolitan, we understand that every shipment is unique. That's why we offer customized
+                    logistics solutions tailored to your specific requirements, whether you're shipping perishable
+                    goods, oversized cargo, or time-sensitive materials.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+            <div class="about-carousel">
+                <div class="swiper aboutSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                                alt="Warehouse">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                                alt="Cargo Ship">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                                alt="Cargo Plane">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <h2 class="section-title"> <span>Our Products</span></h2>
+        <div class="products-carousel">
+            <div class="swiper productSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide product-slide">
+                        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+                            alt="Agricultural Products">
+                        <h3>Agricultural Products</h3>
+                    </div>
+                    <div class="swiper-slide product-slide">
+                        <img src="https://images.unsplash.com/photo-1647427060118-4911c9821b82?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Industrial Machinery">
+                        <h3>Industrial Machinery</h3>
+                    </div>
+                    <div class="swiper-slide product-slide">
+                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1128&q=80"
+                            alt="Electronics">
+                        <h3>Electronics</h3>
+                    </div>
+                    <div class="swiper-slide product-slide">
+                        <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80"
+                            alt="Textiles">
+                        <h3>Textiles</h3>
+                    </div>
+                    <div class="swiper-slide product-slide">
+                        <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1135&q=80"
+                            alt="Pharmaceuticals">
+                        <h3>Pharmaceuticals</h3>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="section-title"> <span>Our Services</span></h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-ship service-icon"></i>
+                <h3>Ocean Freight</h3>
+                <p>Comprehensive sea freight solutions including FCL, LCL, and specialized container services for all
+                    your international shipping needs.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-plane service-icon"></i>
+                <h3>Air Freight</h3>
+                <p>Fast and reliable air cargo services with global coverage, perfect for time-sensitive shipments and
+                    high-value goods.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-truck service-icon"></i>
+                <h3>Land Transport</h3>
+                <p>Efficient road and rail transportation solutions for domestic and cross-border shipments with
+                    real-time tracking.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-warehouse service-icon"></i>
+                <h3>Warehousing</h3>
+                <p>Secure storage solutions with inventory management, order fulfillment, and distribution services
+                    tailored to your business.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-boxes service-icon"></i>
+                <h3>Packaging</h3>
+                <p>Professional packing and crating services to ensure your goods are protected throughout the shipping
+                    process.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-customs service-icon"></i>
+                <h3>Customs Clearance</h3>
+                <p>Expert assistance with customs documentation and clearance to ensure smooth cross-border
+                    transactions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>JD Cosmopolitan</h3>
+                <p>Global logistics solutions tailored to your business needs. Connecting markets across continents with
+                    reliability and innovation.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="#"><i class="fas fa-chevron-right"></i> Home</a>
+                <a href="#about"><i class="fas fa-chevron-right"></i> About Us</a>
+                <a href="#products"><i class="fas fa-chevron-right"></i> Products</a>
+                <a href="#services"><i class="fas fa-chevron-right"></i> Services</a>
+                <a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <a href="#"><i class="fas fa-chevron-right"></i> Ocean Freight</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Air Freight</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Land Transport</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Warehousing</a>
+                <a href="#"><i class="fas fa-chevron-right"></i> Customs Clearance</a>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Logistics Park, Industrial Area, Dubai, UAE</p>
+                <p><i class="fas fa-phone"></i> +971 4 123 4567</p>
+                <p><i class="fas fa-envelope"></i> info@jdcosmopolitan.com</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 8AM - 6PM</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 JD Cosmopolitan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            header.classList.toggle('scrolled', window.scrollY > 0);
+
+            // Container zoom effect
+            const container = document.getElementById('container3d');
+            const scrollPosition = window.scrollY;
+            const maxScroll = 300; // Adjust this value to control when the zoom stops
+
+            if (scrollPosition <= maxScroll) {
+                const scale = 1 + (scrollPosition / 1000);
+                container.style.transform = `rotateX(-10deg) rotateY(20deg) translateY(${Math.sin(scrollPosition / 200) * 10}px) scale(${Math.min(scale, 1.3)})`;
+            }
+        });
+
+        // Initialize About Swiper
+        const aboutSwiper = new Swiper('.aboutSwiper', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+
+        // Initialize Products Swiper
+        const productSwiper = new Swiper('.productSwiper', {
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 40
+                }
+            }
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add slight rotation animation to container
+        let angle = 0;
+        setInterval(() => {
+            angle += 0.1;
+            const container = document.getElementById('container3d');
+            const scrollPosition = window.scrollY;
+            const maxScroll = 300;
+            const scale = scrollPosition <= maxScroll ? 1 + (scrollPosition / 1000) : 1.3;
+            container.style.transform = `rotateX(-10deg) rotateY(${20 + Math.sin(angle) * 5}deg) translateY(${Math.sin(angle * 2) * 10}px) scale(${Math.min(scale, 1.3)})`;
+        }, 50);
+    </script>
 </body>
+
 </html>
