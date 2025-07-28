@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @keyframes move {
     100% {
         transform: translate3d(0, 0, 1px) rotate(360deg);
@@ -517,6 +518,13 @@
 *{
     padding: 0px;
     margin: 0px;
+    font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+
 }
 body{
     background-color: black;
@@ -548,7 +556,7 @@ header{
     margin: auto;
     margin-top: 30px;
     padding: 15px 20px;
-    border: 0.1px solid rgb(136, 206, 136);
+    box-shadow: 0.1px 0.1px 1px 0.1px rgb(136, 206, 136);
     border-radius: 30px;
     margin-bottom: 50px;
     position: sticky;
@@ -556,7 +564,7 @@ header{
     background-color: black;
 }
 .home{
-    height: 90vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
