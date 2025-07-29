@@ -630,3 +630,9 @@ header{
 #ABOUT{
     height: 15vh;
 }
+
+.project-content .videos{
+    height: 250px;
+    width: 200px;
+    border: 2px solid green;
+}
