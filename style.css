@@ -633,6 +633,25 @@ header{
 
 .project-content .videos{
     height: 250px;
-    width: 200px;
-    border: 2px solid green;
+    width: 400px;
+    margin: 30px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    box-shadow: 2px 0 5px -1px rgb(136, 206, 136);
+}
+
+.project-content {
+    margin: 0px 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+    
+
+}
+.project-content .videos:hover{
+    box-shadow: 1px 1px 20px 1px rgb(136, 206, 136);
+ 
 }
